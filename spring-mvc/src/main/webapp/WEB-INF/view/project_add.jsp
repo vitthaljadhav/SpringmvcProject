@@ -66,6 +66,12 @@
 					<form:input id="hours" 
 						cssClass="form-control" path="authorizedHours"/>
 				</div>
+				
+				<div class="form-group">
+					<label for="jdate">Start Joining Date</label>(dd-MM-yyyy)
+					<form:input id="jdate" 
+						cssClass="form-control" path="jdate"/>
+				</div>
 			
 				<div class="form-group">
 					<label for="project-name">Description</label>

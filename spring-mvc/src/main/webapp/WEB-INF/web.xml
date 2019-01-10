@@ -25,6 +25,7 @@
 			<param-value>/WEB-INF/spring/dispacher-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+	    <multipart-config/>
 	</servlet>
 
 	<!-- Map all requests to the DispatcherServlet for handling -->

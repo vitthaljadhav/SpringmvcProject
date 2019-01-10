@@ -9,24 +9,37 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<mvc:annotation-driven />
-<bean class="com.info.mvc.entity.HitCounter" scope="application">
+<bean class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+	<!-- <mvc:annotation-driven /> -->
+	<mvc:annotation-driven conversion-service="conversionService" />
 
-<aop:scoped-proxy/>
-</bean>
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.info.mvc.convertes.JoiningDateConverters" />
+               <bean class="com.info.mvc.convertes.ResourceConverter"/>
+			</list>
+		</property>
+	</bean>
 
-    <mvc:interceptors>
+	<bean class="com.info.mvc.entity.HitCounter" scope="application">
+
+		<aop:scoped-proxy />
+	</bean>
+
+	<mvc:interceptors>
 		<mvc:interceptor>
-		 <mvc:mapping path="/project/**"/>
+			<mvc:mapping path="/project/**" />
 			<bean class="com.info.mvc.interceptor.GlobalInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<context:component-scan
-		base-package="com.info.mvc.controller"/>
+		base-package="com.info.mvc.controller" />
 	<context:component-scan
-		base-package="com.info.mvc.exception"/>
-		<context:component-scan base-package="com.info.mvc.service"/>
+		base-package="com.info.mvc.exception" />
+	<context:component-scan
+		base-package="com.info.mvc.service" />
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -44,7 +57,7 @@
 				</bean>
 			</list>
 		</property>
-		<property name="contentNegotiationManager">
+		 <property name="contentNegotiationManager">
 			<bean
 				class="org.springframework.web.accept.ContentNegotiationManager">
 				<constructor-arg>
@@ -65,7 +78,7 @@
 				<bean
 					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 			</list>
-		</property>
+		</property> 
 	</bean>
 
 	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 

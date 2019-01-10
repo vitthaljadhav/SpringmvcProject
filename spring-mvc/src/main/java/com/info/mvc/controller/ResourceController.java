@@ -4,19 +4,19 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.info.mvc.entity.Resource;
 import com.info.mvc.service.ResourceService;
@@ -29,13 +29,32 @@ public class ResourceController {
 	
 	@Autowired
 	private ResourceService service;
-     @RequestMapping("/{resourceId}")
+
+	
+	@RequestMapping(value="/upload" , method=RequestMethod.POST)
+	public @ResponseBody String fileUpload(@RequestParam("file")MultipartFile multipartFile)
+	{
+		if(!multipartFile.isEmpty()) {
+			return "This file Size is a "+multipartFile.getSize();
+		}else {	
+			return "There was a Problem !";
+		}
+	}
+	
+	    @RequestMapping("/{resourceId}")
+	    @ResponseBody
+		public Resource findByResourcesId(@PathVariable("resourceId") Resource resource)
+		{
+			return resource;
+		}
+	
+    /* @RequestMapping("/{resourceId}")
     @ResponseBody
 	public Resource findByResourcesId(@PathVariable("resourceId") Long resourceId)
 	{
 		return service.find(resourceId);
 	}
-	
+	*/
 	@RequestMapping(value="/find")
 	public String findResource(Model model)
 	{

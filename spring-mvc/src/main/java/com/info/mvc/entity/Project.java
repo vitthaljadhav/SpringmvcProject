@@ -1,6 +1,7 @@
 package com.info.mvc.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -20,6 +21,7 @@ public class Project {
 
 	private BigDecimal authorizedFunds;
 
+	private Date jdate;
 	private String year;
 
 	private boolean special;
@@ -52,7 +54,16 @@ public class Project {
 		this.description = description;
 	}
 
+	
 
+
+	public Date getJdate() {
+		return jdate;
+	}
+
+	public void setJdate(Date jdate) {
+		this.jdate = jdate;
+	}
 
 	public BigDecimal getAuthorizedHours() {
 		return authorizedHours;
@@ -116,8 +127,11 @@ public class Project {
 	@Override
 	public String toString() {
 		return "Project [projectId=" + projectId + ", name=" + name + ", description=" + description + ", sponsor="
-				+ sponsor + ", authorizedHours=" + authorizedHours + ", authorizedFunds=" + authorizedFunds + ", year="
-				+ year + ", special=" + special + ", type=" + type + ", pointsOfContact=" + pointsOfContact + "]";
-	}	
+				+ sponsor + ", authorizedHours=" + authorizedHours + ", authorizedFunds=" + authorizedFunds + ", jdate="
+				+ jdate + ", year=" + year + ", special=" + special + ", type=" + type + ", pointsOfContact="
+				+ pointsOfContact + "]";
+	}
+
+	
 	
 }

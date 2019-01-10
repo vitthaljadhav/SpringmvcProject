@@ -28,8 +28,8 @@
 				</tr>
 				<c:forEach items="${resources}" var="resource">
 					<tr>
-						<%-- <td><a href="<spring:url value="/resource/${resource.resourceId}"/>">${resource.name}</a></td> --%>
-							<td>${resource.name}</td>
+						 <td><a href="<spring:url value="/resource/${resource.resourceId}"/>">${resource.name}</a></td>
+						
 							
 						<td><a href="<spring:url value="/resource/${resource.resourceId}"/>">${resource.type}</a></td>
 						<%-- <td><a href="<spring:url value="/resource/${resource.resourceId}"/>"> ${resource.type}</a>${resource.type}</td> --%>
